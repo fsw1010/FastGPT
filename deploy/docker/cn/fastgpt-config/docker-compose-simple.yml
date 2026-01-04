@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+  fastgpt:
+    image: registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:v4.14.4
+    container_name: fastgpt
+    ports:
+      - "3000:3000"
+    environment:
+      - OPENAI_BASE_URL=http://host.docker.internal:11434/v1
+      - CHAT_API_KEY=ollama
+      - DEFAULT_ROOT_PSW=kevin
+      - TOKEN_KEY=kevin
+      - ROOT_KEY=kevin
+    volumes:
+      - ./config.json:/app/data/config.json
+    restart: unless-stopped
+
+  xinference:
+    image: xprobe/xinference:latest
+    container_name: xinference
+    ports:
+      - "9997:9997"
+    command: xinference-local -H 0.0.0.0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped

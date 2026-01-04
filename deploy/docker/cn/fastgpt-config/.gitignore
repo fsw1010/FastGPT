@@ -1,0 +1,17 @@
+# 数据目录
+mongo/
+pg/
+redis/
+fastgpt-minio/
+xinference_data/
+aiproxy_pg/
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# 环境变量文件（如果包含敏感信息）
+.env

@@ -1,0 +1,51 @@
+{
+  "feConfigs": {
+    "lafEnv": "https://laf.dev"
+  },
+  "systemConfig": {
+    "vectorMaxProcess": 15,
+    "qaMaxProcess": 15,
+    "pgIvfflatProbe": 20
+  },
+  "chatModels": [
+    {
+      "model": "qwen2.5:7b",
+      "name": "Qwen2.5 (Ollama直连)",
+      "contextMaxToken": 8000,
+      "quoteMaxToken": 5000,
+      "maxTemperature": 1.2,
+      "charsPointsPrice": 0,
+      "defaultSystemChatPrompt": "你是一个专业的助手。",
+      "requestUrl": "http://host.docker.internal:11434/v1/chat/completions",
+      "requestAuth": "ollama",
+      "select": true
+    }
+  ],
+  "vectorModels": [
+    {
+      "model": "bge-m3:latest",
+      "name": "BGE-M3向量 (Ollama直连)",
+      "charsPointsPrice": 0,
+      "defaultToken": 512,
+      "maxToken": 8192,
+      "requestUrl": "http://host.docker.internal:11434/v1/embeddings",
+      "requestAuth": "ollama",
+      "weight": 100
+    }
+  ],
+  "rerankModels": [
+    {
+      "model": "bge-reranker-v2-m3",
+      "name": "BGE-Rerank V2 M3 (Xinference)",
+      "requestUrl": "http://host.docker.internal:9997/v1/rerank",
+      "requestAuth": "",
+      "charsPointsPrice": 0
+    }
+  ],
+  "audioSpeechModels": [],
+  "whisperModel": {
+    "model": "whisper-1",
+    "name": "Whisper",
+    "charsPointsPrice": 0
+  }
+}
